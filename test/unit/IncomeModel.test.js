@@ -1,4 +1,4 @@
-import { describe, it, before } from 'mocha';
+import { describe, it, afterEach } from 'mocha';
 import { expect } from 'chai';
 import sinon from 'sinon'
 import Income from '../../src/entity/Income.js';
@@ -6,6 +6,10 @@ import Income from '../../src/entity/Income.js';
 
 describe('IncomeModel Suite Tests', () => {
   
+  afterEach(() => {
+    sinon.restore()
+  })
+
   describe('static formatCurrency', () => {
     
     it('should throw if currency is not a string', () => {
@@ -60,7 +64,21 @@ describe('IncomeModel Suite Tests', () => {
       expect(() => sut.formatCurrency(validParams)).to.throw()
     })
 
-    
+    it('should return the correct currency format given the correct parameters', () => {
+      const sut = Income
+
+      const correctParams = {
+        currency: 'BRL',
+        value: 1000.5,
+        language: 'pt-BR'
+      }
+
+      const expected = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(1000.5)
+
+      const result = sut.formatCurrency(correctParams)
+
+      expect(result).to.be.equal(expected)
+    })
   })
   
 });
