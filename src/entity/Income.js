@@ -41,10 +41,9 @@ class Income {
     if (typeof value !== 'number') throw new Error('Value must be a number')
     if (typeof language !== 'string') throw new Error('Language must be a string')
 
-    const result = Intl.NumberFormat(language, {style: 'currency', currency}).format(number)
+    const result = new Intl.NumberFormat(language, {style: 'currency', currency}).format(value)
 
-    // TODO: Implement method
-    return null;
+    return result;
   }
 }
 
