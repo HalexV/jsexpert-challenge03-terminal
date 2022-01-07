@@ -88,16 +88,29 @@ describe('IncomeRepository Suite Tests', () => {
 
       await expect(result).to.eventually.be.rejectedWith(Error)
     })
+
+    it('should throw if status is not 200', async () => {
+      const sut = new IncomeRepository()
+      sinon.stub(sut, 'makeRequest').callsFake( async () => {
+        return new Promise(resolve => resolve({data: {}, status: 0}))
+      })
+
+      const result = sut.getConversions()
+
+      await expect(result).to.eventually.be.rejectedWith(Error, 'getConversions API call is not 200')
+    })
     
     it('should return the correct list of conversions when getConversions is called', async () => {
       const sut = new IncomeRepository()
 
-      const makeRequestStub = () => ({data: convertResponse, status: 200})
+      const makeRequestStub = async () => {
+        return new Promise(resolve => resolve({data: convertResponse, status: 200}))
+      }
       
       sut.makeRequest = makeRequestStub
 
       const expected = mocks.convertResponse.results;
-      const result = await repository.getConversions();
+      const result = await sut.getConversions();
   
       expect(result).to.be.equal(expected);
     });
