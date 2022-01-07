@@ -77,6 +77,17 @@ describe('IncomeRepository Suite Tests', () => {
 
       expect(makeRequestStub.calledWith('/convert')).to.be.ok
     })
+
+    it('should throw if makeRequest throws', async () => {
+      const sut = new IncomeRepository()
+      const makeRequestStub = sinon.stub(sut, 'makeRequest').callsFake( async () => {
+        return new Promise((resolve, reject) => reject(new Error()))
+      })
+
+      const result = sut.getConversions()
+
+      await expect(result).to.eventually.be.rejectedWith(Error)
+    })
     
     it('should return the correct list of conversions when getConversions is called', async () => {
       const sut = new IncomeRepository()
