@@ -13,7 +13,7 @@ describe('IncomeModel Suite Tests', () => {
 
       const invalidParams = {
         currency: 1,
-        value: 'any',
+        value: 1,
         language: 'any'
       }
 
@@ -30,6 +30,18 @@ describe('IncomeModel Suite Tests', () => {
       }
 
       expect(() => sut.formatCurrency(invalidParams)).to.throw('Value must be a number')
+    })
+
+    it('should throw if language is not a string', () => {
+      const sut = Income
+
+      const invalidParams = {
+        currency: 'any',
+        value: 1,
+        language: 1
+      }
+
+      expect(() => sut.formatCurrency(invalidParams)).to.throw('Language must be a string')
     })
 
     
