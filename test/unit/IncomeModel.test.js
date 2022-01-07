@@ -44,6 +44,22 @@ describe('IncomeModel Suite Tests', () => {
       expect(() => sut.formatCurrency(invalidParams)).to.throw('Language must be a string')
     })
 
+    it('should throw if Intl.NumberFormat throws', () => {
+      const sut = Income
+
+      sinon.stub(Intl, 'NumberFormat').callsFake(() => {
+        throw new Error()
+      })
+
+      const validParams = {
+        currency: 'any',
+        value: 1,
+        language: 'any'
+      }
+
+      expect(() => sut.formatCurrency(validParams)).to.throw()
+    })
+
     
   })
   
