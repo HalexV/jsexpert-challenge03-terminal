@@ -98,7 +98,7 @@ project
 
 * [ ] Deve implementar a internacionalização no arquivo `entity/Income.js`
 
-* [ ] Deve implementar os métodos existentes em `repository/IncomeRepository`, assegurando que os testes em `IncomeRepository.test.js` estejam funcionando.
+* [x] Deve implementar os métodos existentes em `repository/IncomeRepository`, assegurando que os testes em `IncomeRepository.test.js` estejam funcionando.
 
 * [ ] Deve implementar os métodos existentes em `service/IncomeService.js`, assegurando que os testes em `IncomeService.test.js` estejam funcionando.
 
