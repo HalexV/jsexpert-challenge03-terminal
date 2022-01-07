@@ -38,6 +38,7 @@ class Income {
     const _language = language || defaultLanguage;
 
     if (typeof currency !== 'string') throw new Error('Currency must be a string')
+    if (typeof value !== 'number') throw new Error('Value must be a number')
 
     // TODO: Implement method
     return null;
