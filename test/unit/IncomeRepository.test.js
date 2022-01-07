@@ -6,6 +6,8 @@ import { incomeRepositoryMock, mocks } from '../mocks/incomeRepository.mock.js';
 import axios from 'axios'
 import IncomeRepository from '../../src/repository/IncomeRepository.js';
 
+import convertResponse from '../mocks/convert-response.js'
+
 chai.use(chaiAsPromised)
 
 const expect = chai.expect
@@ -65,7 +67,24 @@ describe('IncomeRepository Suite Tests', () => {
   })
 
   describe('getConversions', () => {
+    it('should call makeRequest with /convert url', async () => {
+      const sut = new IncomeRepository()
+      const makeRequestStub = sinon.stub(sut, 'makeRequest').callsFake( async () => {
+        return new Promise(resolve => resolve({data: convertResponse, status: 200}))
+      })
+
+      await sut.getConversions()
+
+      expect(makeRequestStub.calledWith('/convert')).to.be.ok
+    })
+    
     it('should return the correct list of conversions when getConversions is called', async () => {
+      const sut = new IncomeRepository()
+
+      const makeRequestStub = () => ({data: convertResponse, status: 200})
+      
+      sut.makeRequest = makeRequestStub
+
       const expected = mocks.convertResponse.results;
       const result = await repository.getConversions();
   
