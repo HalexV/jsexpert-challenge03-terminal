@@ -12,7 +12,9 @@ class IncomeRepository {
   }
 
   async getConversions() {
-    // @TODO: Implement method
+    
+    const {data, status} = await this.makeRequest('/convert')
+
     return null;
   }
 }
