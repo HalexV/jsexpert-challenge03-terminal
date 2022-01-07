@@ -42,6 +42,26 @@ describe('IncomeRepository Suite Tests', () => {
       await expect(result).to.eventually.be.rejectedWith(Error)
 
     })
+
+    it('should return an object containing a data and a status field', async () => {
+      const sut = new IncomeRepository()
+      
+      const axiosMockedResponse = {
+        data: {},
+        status: 200,
+        any1: {},
+        any2: {},
+        any3: {}
+      }
+
+      axiosStub.callsFake(async () => {
+        return new Promise(resolve => resolve(axiosMockedResponse))
+      })
+
+      const result = await sut.makeRequest('any_url')
+
+      expect(result).to.be.deep.equal({data: {}, status: 200})
+    })
   })
 
   describe('getConversions', () => {
