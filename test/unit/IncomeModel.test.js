@@ -20,6 +20,18 @@ describe('IncomeModel Suite Tests', () => {
       expect(() => sut.formatCurrency(invalidParams)).to.throw('Currency must be a string')
     })
 
+    it('should throw if value is not a number', () => {
+      const sut = Income
+
+      const invalidParams = {
+        currency: 'any',
+        value: 'any',
+        language: 'any'
+      }
+
+      expect(() => sut.formatCurrency(invalidParams)).to.throw('Value must be a number')
+    })
+
     
   })
   
