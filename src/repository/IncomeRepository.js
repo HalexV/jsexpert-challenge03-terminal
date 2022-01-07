@@ -15,7 +15,11 @@ class IncomeRepository {
     
     const {data, status} = await this.makeRequest('/convert')
 
-    return null;
+    if (status !== 200) throw new Error('getConversions API call is not 200')
+
+    const { results } = data
+
+    return results;
   }
 }
 
