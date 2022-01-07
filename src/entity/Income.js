@@ -39,6 +39,7 @@ class Income {
 
     if (typeof currency !== 'string') throw new Error('Currency must be a string')
     if (typeof value !== 'number') throw new Error('Value must be a number')
+    if (typeof language !== 'string') throw new Error('Language must be a string')
 
     // TODO: Implement method
     return null;
