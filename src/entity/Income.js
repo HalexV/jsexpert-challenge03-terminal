@@ -12,7 +12,15 @@ class Income {
     conversion02,
     conversion03,
   }) {
-    this.position = position || 'No description';
+
+    if (position == undefined) {
+      this.position = 'No description'
+    } else if (typeof position !== 'string') {
+      throw new Error('Position must be a string')
+    } else {
+      this.position = position;
+    }
+
     this.expectation = expectation || { currency: 'BRL', language: 'pt-BR', value: 1000.5 };
     this.conversion01 = conversion01 || { currency: 'USD', language: 'en-US', value: 1000.5 };
     this.conversion02 = conversion02 || { currency: 'EUR', language: 'en-GB', value: 1000.5 };
