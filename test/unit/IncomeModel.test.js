@@ -11,6 +11,16 @@ describe('IncomeModel Suite Tests', () => {
     sinon.restore()
   })
 
+  describe('constructor', () => {
+
+    it('should throw when an object is not passed', () => {
+      
+      expect(() => new Income()).to.throw()
+
+    })
+
+  })
+
   describe('format', () => {
 
     it('should throw when static formatCurrency throws', () => {
