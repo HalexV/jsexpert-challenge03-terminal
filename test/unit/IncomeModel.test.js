@@ -10,6 +10,20 @@ describe('IncomeModel Suite Tests', () => {
     sinon.restore()
   })
 
+  describe('format', () => {
+
+    it('should throw when static formatCurrency throws', () => {
+      const sut = new Income({})
+
+      sinon.stub(Income, 'formatCurrency').callsFake(() => {
+        throw new Error()
+      })
+
+      expect(() => sut.format()).to.throw()
+    })
+
+  })
+
   describe('static formatCurrency', () => {
     
     it('should throw if currency is not a string', () => {
