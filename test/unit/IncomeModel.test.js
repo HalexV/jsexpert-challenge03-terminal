@@ -19,6 +19,10 @@ describe('IncomeModel Suite Tests', () => {
 
     })
 
+    it('should throw when position is not a string', () => {
+      expect(() => new Income({ position: 0 })).to.throw('Position must be a string')
+    })
+
     it('should return formatted default values when an empty object is passed', () => {
       const sut = new Income({})
 
