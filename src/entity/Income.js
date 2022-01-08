@@ -1,6 +1,3 @@
-import languageConfig from '../config/language.js';
-
-const defaultLanguage = languageConfig.default;
 
 class Income {
   static #id = 0;
@@ -43,7 +40,6 @@ class Income {
   }
 
   static formatCurrency({ currency, value, language }) {
-    const _language = language || defaultLanguage;
 
     if (typeof currency !== 'string') throw new Error('Currency must be a string')
     if (typeof value !== 'number') throw new Error('Value must be a number')
