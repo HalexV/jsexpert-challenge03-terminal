@@ -96,7 +96,7 @@ project
 
 * [ ] Deve identificar o que está faltando no arquivo `config/terminal.js`
 
-* [ ] Deve implementar a internacionalização no arquivo `entity/Income.js`
+* [x] Deve implementar a internacionalização no arquivo `entity/Income.js`
 
 * [x] Deve implementar os métodos existentes em `repository/IncomeRepository`, assegurando que os testes em `IncomeRepository.test.js` estejam funcionando.
 
