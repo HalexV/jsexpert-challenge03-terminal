@@ -19,6 +19,31 @@ describe('IncomeModel Suite Tests', () => {
 
     })
 
+    it('should return formatted default values when an empty object is passed', () => {
+      const sut = new Income({})
+
+      const defaults = {
+        position: 'No description',
+        expectation: { currency: 'BRL', language: 'pt-BR', value: 1000.5 },
+        conversion01:{ currency: 'USD', language: 'en-US', value: 1000.5 },
+        conversion02:{ currency: 'EUR', language: 'en-GB', value: 1000.5 },
+        conversion03:{ currency: 'RUB', language: 'ru-RU', value: 1000.5 },
+      }
+
+      const expected = {
+        position: defaults.position,
+        expectation: new Intl.NumberFormat(defaults.expectation.language, { style: 'currency', currency: defaults.expectation.currency }).format(defaults.expectation.value),
+        conversion01: new Intl.NumberFormat(defaults.conversion01.language, { style: 'currency', currency: defaults.conversion01.currency }).format(defaults.conversion01.value),
+        conversion02: new Intl.NumberFormat(defaults.conversion02.language, { style: 'currency', currency: defaults.conversion02.currency }).format(defaults.conversion02.value),
+        conversion03: new Intl.NumberFormat(defaults.conversion03.language, { style: 'currency', currency: defaults.conversion03.currency }).format(defaults.conversion03.value),
+      }
+
+      const {id,...result} = sut.format()
+      
+      expect(typeof id).to.be.equal('number')
+      expect(result).to.be.deep.equal(expected)
+    })
+
   })
 
   describe('format', () => {
