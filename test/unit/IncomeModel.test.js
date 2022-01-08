@@ -3,6 +3,7 @@ import { expect } from 'chai';
 import sinon from 'sinon'
 import Income from '../../src/entity/Income.js';
 
+import validIncome from '../mocks/valid-income.js'
 
 describe('IncomeModel Suite Tests', () => {
   
@@ -20,6 +21,26 @@ describe('IncomeModel Suite Tests', () => {
       })
 
       expect(() => sut.format()).to.throw()
+    })
+
+    it('should return an object with values formatted when called', () => {
+      const sut = new Income(validIncome)
+
+      const { position, expectation, conversion01, conversion02, conversion03 } = validIncome
+
+      const expected = {
+        position,
+        expectation: new Intl.NumberFormat(expectation.language, { style: 'currency', currency: expectation.currency }).format(expectation.value),
+        conversion01: new Intl.NumberFormat(conversion01.language, { style: 'currency', currency: conversion01.currency }).format(conversion01.value),
+        conversion02: new Intl.NumberFormat(conversion02.language, { style: 'currency', currency: conversion02.currency }).format(conversion02.value),
+        conversion03: new Intl.NumberFormat(conversion03.language, { style: 'currency', currency: conversion03.currency }).format(conversion03.value),
+      }
+
+      const { id, ...result } = sut.format()
+
+      expect(typeof id).to.be.equal('number')
+      expect(result).to.be.deep.equal(expected)
+
     })
 
   })

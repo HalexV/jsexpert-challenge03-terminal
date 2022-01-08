@@ -13,10 +13,10 @@ class Income {
     conversion03,
   }) {
     this.position = position || 'No description';
-    this.expectation = expectation || { currency: 'BRL', language: 'pt-BR', value: 100.5 };
-    this.conversion01 = conversion01 || { currency: 'USD', language: 'en-US', value: 100.5 };
-    this.conversion02 = conversion02 || { currency: 'EUR', language: 'en-GB', value: 100.5 };
-    this.conversion03 = conversion03 || { currency: 'RUB', language: 'ru-RU', value: 100.5 };
+    this.expectation = expectation || { currency: 'BRL', language: 'pt-BR', value: 1000.5 };
+    this.conversion01 = conversion01 || { currency: 'USD', language: 'en-US', value: 1000.5 };
+    this.conversion02 = conversion02 || { currency: 'EUR', language: 'en-GB', value: 1000.5 };
+    this.conversion03 = conversion03 || { currency: 'RUB', language: 'ru-RU', value: 1000.5 };
   }
 
   #getId() {
