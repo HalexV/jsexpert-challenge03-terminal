@@ -12,6 +12,8 @@ class IncomeService {
 
     const [position, expectation] = incomeString.split(delimiter);
 
+    if (expectation == undefined) throw new Error('IncomeString must contain a valid delimiter')
+
     // @TODO: Implement method
     return null;
   }
