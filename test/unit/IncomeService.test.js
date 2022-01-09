@@ -82,6 +82,15 @@ describe('IncomeService Suite Tests', () => {
         errorMessage = error.message;
       }
       expect(errorMessage).to.be.equal(expectedErrorMessage);
+
+      errorMessage = null;
+
+      try {
+        await service.generateIncomeFromString('a;');
+      } catch (error) {
+        errorMessage = error.message;
+      }
+      expect(errorMessage).to.be.equal(expectedErrorMessage);
     });
 
   })
