@@ -14,6 +14,10 @@ class IncomeService {
 
     if (expectation == undefined) throw new Error('IncomeString must contain a valid delimiter')
 
+    const expectationValue = Number(expectation)
+
+    if (!expectationValue) throw new Error('A valid Expectation is required. Please note that only numbers are allowed.')
+
     // @TODO: Implement method
     return null;
   }
