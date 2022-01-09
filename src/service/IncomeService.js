@@ -6,6 +6,7 @@ class IncomeService {
   }
 
   async generateIncomeFromString(incomeString, delimiter = ';') {
+    if (typeof incomeString !== 'string') throw new Error('IncomeString must be a string')
     if (typeof delimiter !== 'string') throw new Error('Delimiter must be a string')
     
     const [position, expectation] = incomeString.split(delimiter);
