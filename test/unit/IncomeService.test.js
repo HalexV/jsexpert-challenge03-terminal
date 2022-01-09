@@ -20,6 +20,14 @@ describe('IncomeService Suite Tests', () => {
 
   describe('generateIncomeFromString', () => {
 
+    it('should throw when incomeString is not a string', async () => {
+      const sut = new IncomeService({incomeRepository: {}})
+
+      const result = sut.generateIncomeFromString(1, 'any')
+
+      await expect(result).to.be.eventually.rejectedWith(Error, 'IncomeString must be a string')
+    })
+
     it('should throw when delimiter is not a string', async () => {
       const sut = new IncomeService({incomeRepository: {}})
 
