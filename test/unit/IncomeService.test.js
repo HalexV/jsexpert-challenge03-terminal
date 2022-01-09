@@ -1,8 +1,13 @@
 import { describe, it, before } from 'mocha';
-import { expect } from 'chai';
+import chai from 'chai';
+import chaiAsPromised from 'chai-as-promised';
 import { incomeRepositoryMock, mocks } from '../mocks/incomeRepository.mock.js';
 
 import IncomeService from '../../src/service/IncomeService.js';
+
+chai.use(chaiAsPromised)
+
+const expect = chai.expect
 
 describe('IncomeService Suite Tests', () => {
   let service = {};
@@ -12,6 +17,18 @@ describe('IncomeService Suite Tests', () => {
     repository = incomeRepositoryMock;
     service = new IncomeService({ incomeRepository: repository });
   });
+
+  describe('generateIncomeFromString', () => {
+
+    it('should throw when delimiter is not a string', async () => {
+      const sut = new IncomeService({incomeRepository: {}})
+
+      const result = sut.generateIncomeFromString('any', 1)
+
+      await expect(result).to.be.eventually.rejectedWith(Error, 'Delimiter must be a string')
+    })
+
+  })
 
   it('should successfully return an income instance given a correct string', async () => {
     const expected = mocks.validIncome;
