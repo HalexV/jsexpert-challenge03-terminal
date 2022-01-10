@@ -77,6 +77,21 @@ describe('Terminal Suite Tests', () => {
       expect(actualArgument).to.be.deep.equal(expectedArgument)
     })
 
+    it('should call initializeTable when initialize is called', () => {
+      const sut = new CustomTerminal()
+
+      let calls = 0
+
+      sut.initializeTable = () => {
+        calls++
+        return null
+      }
+
+      sut.initialize()
+
+      expect(calls).to.be.equal(1)
+    })
+
   })
 
 })
