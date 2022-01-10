@@ -15,8 +15,12 @@ class CustomTerminal {
 
   initialize() {
     DraftLog.into(console).addLineListener(process.stdin)
+    this.terminal = readline.Interface({
+      input: process.stdin,
+      output: process.stdout,
+    })
   }
-  // TODO: You'll need more methods down here as well, be creative
+  
 }
 
 export default CustomTerminal;
