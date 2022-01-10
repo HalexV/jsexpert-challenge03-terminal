@@ -3,6 +3,8 @@ import chai from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 import { incomeRepositoryMock, mocks } from '../mocks/incomeRepository.mock.js';
 
+import convertResponse from '../mocks/convert-response.js';
+
 import IncomeService from '../../src/service/IncomeService.js';
 
 chai.use(chaiAsPromised)
@@ -37,9 +39,25 @@ describe('IncomeService Suite Tests', () => {
     })
 
     it('should successfully return an income instance given a correct string', async () => {
-      const expected = mocks.validIncome;
+      const sut = new IncomeService({
+        incomeRepository: {
+          getConversions: () => convertResponse.results
+        }
+      })
+      
+      const USD = 0.174058
+      const EUR = 0.154342
+      const GBP = 0.131224
+      
+      const expected = {
+        position: 'Senior Javascript Engineer',
+        expectation: new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(15000),
+        conversion01: new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(15000/USD),
+        conversion02: new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'EUR' }).format(15000/EUR),
+        conversion03: new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP' }).format(15000/GBP),
+      };
   
-      const income = await service.generateIncomeFromString(
+      const {id, ...income} = await sut.generateIncomeFromString(
         'Senior Javascript Engineer; 15000'
       );
   
@@ -92,6 +110,8 @@ describe('IncomeService Suite Tests', () => {
       }
       expect(errorMessage).to.be.equal(expectedErrorMessage);
     });
+
+    
 
   })
 
