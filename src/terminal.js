@@ -14,7 +14,7 @@ class CustomTerminal {
   }
 
   initialize() {
-    DraftLog.into(console)
+    DraftLog.into(console).addLineListener(process.stdin)
   }
   // TODO: You'll need more methods down here as well, be creative
 }
