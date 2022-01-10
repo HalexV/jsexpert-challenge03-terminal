@@ -3,6 +3,7 @@ import Draftlog from 'draftlog'
 import CustomTerminal from '../../src/terminal.js'
 import { expect } from 'chai'
 import sinon from 'sinon'
+import readline from 'readline'
 
 describe('Terminal Suite Tests', () => {
 
@@ -43,6 +44,37 @@ describe('Terminal Suite Tests', () => {
 
       expect(calls).to.be.equal(1)
       expect(argument).to.be.deep.equal(process.stdin)
+    })
+
+    it('should initialize this.terminal with readline.Interface', () => {
+      const sut = new CustomTerminal()
+
+      const expected = 'ok'
+      const expectedArgument = {
+        input: process.stdin,
+        output: process.stdout,
+      }
+
+      let actualArgument = null
+
+      sinon.stub(Draftlog, 'into').callsFake(() => ({
+        addLineListener: function () {
+          return
+        }
+      }))
+
+      sinon.stub(readline, 'Interface').callsFake(function () {
+        actualArgument = arguments['0']
+
+        return 'ok'
+      })
+
+      sut.initialize()
+
+      const result = sut.terminal
+
+      expect(result).to.be.equal(expected)
+      expect(actualArgument).to.be.deep.equal(expectedArgument)
     })
 
   })
