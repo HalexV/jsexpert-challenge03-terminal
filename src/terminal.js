@@ -4,16 +4,17 @@ import chalk from 'chalk';
 import readline from 'readline';
 import terminalConfig from './config/terminal.js';
 
-const TABLE_OPTIONS = terminalConfig.table;
+const TABLE_OPTIONS = terminalConfig.tableOptions;
 
 class CustomTerminal {
   constructor() {
     this.print = {};
     this.data = [];
+    this.terminal = null;
   }
 
   initialize() {
-    // TODO: Initialize your terminal with the main instance
+    DraftLog.into(console)
   }
   // TODO: You'll need more methods down here as well, be creative
 }
