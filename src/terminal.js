@@ -19,6 +19,12 @@ class CustomTerminal {
       input: process.stdin,
       output: process.stdout,
     })
+
+    this.initializeTable()
+  }
+
+  initializeTable() {
+    return null
   }
   
 }
