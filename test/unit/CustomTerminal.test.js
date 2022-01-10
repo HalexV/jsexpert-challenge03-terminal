@@ -16,6 +16,10 @@ describe('Terminal Suite Tests', () => {
     it('should call Draftlog once with console when initialize is called', () => {
       const sut = new CustomTerminal()
 
+      sut.initializeTable = () => {
+        return null
+      }
+
       const intoStub = sinon.stub(Draftlog, 'into').callsFake(() => ({
         addLineListener: function () {
           return
@@ -33,6 +37,10 @@ describe('Terminal Suite Tests', () => {
       let calls = 0
       let argument = null 
 
+      sut.initializeTable = () => {
+        return null
+      }
+
       sinon.stub(Draftlog, 'into').callsFake(() => ({
         addLineListener: function () {
           calls++
@@ -48,6 +56,10 @@ describe('Terminal Suite Tests', () => {
 
     it('should initialize this.terminal with readline.Interface', () => {
       const sut = new CustomTerminal()
+
+      sut.initializeTable = () => {
+        return null
+      }
 
       const expected = 'ok'
       const expectedArgument = {
