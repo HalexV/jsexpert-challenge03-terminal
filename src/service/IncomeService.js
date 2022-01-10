@@ -23,9 +23,9 @@ class IncomeService {
     const income = new Income({
       position,
       expectation: { currency: 'BRL', language: 'pt-BR', value: expectationValue },
-      conversion01: { currency: 'USD', language: 'en-US', value: expectationValue/USD },
-      conversion02: { currency: 'EUR', language: 'en-GB', value: expectationValue/EUR },
-      conversion03: { currency: 'GBP', language: 'en-GB', value: expectationValue/GBP },
+      conversion01: { currency: 'USD', language: 'en-US', value: expectationValue * USD },
+      conversion02: { currency: 'EUR', language: 'en-GB', value: expectationValue * EUR },
+      conversion03: { currency: 'GBP', language: 'en-GB', value: expectationValue * GBP },
     })
 
     return income.format();

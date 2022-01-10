@@ -52,9 +52,9 @@ describe('IncomeService Suite Tests', () => {
       const expected = {
         position: 'Senior Javascript Engineer',
         expectation: new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(15000),
-        conversion01: new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(15000/USD),
-        conversion02: new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'EUR' }).format(15000/EUR),
-        conversion03: new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP' }).format(15000/GBP),
+        conversion01: new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(15000 * USD),
+        conversion02: new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'EUR' }).format(15000 * EUR),
+        conversion03: new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP' }).format(15000 * GBP),
       };
   
       const {id, ...income} = await sut.generateIncomeFromString(
