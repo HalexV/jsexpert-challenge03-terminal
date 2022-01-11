@@ -54,7 +54,7 @@ describe('Terminal Suite Tests', () => {
       expect(argument).to.be.deep.equal(process.stdin)
     })
 
-    it('should initialize this.terminal with readline.Interface', () => {
+    it('should initialize this.terminal with readline.createInterface', () => {
       const sut = new CustomTerminal()
 
       sut.initializeTable = () => {
@@ -64,7 +64,6 @@ describe('Terminal Suite Tests', () => {
       const expected = 'ok'
       const expectedArgument = {
         input: process.stdin,
-        output: process.stdout,
       }
 
       let actualArgument = null
@@ -75,7 +74,7 @@ describe('Terminal Suite Tests', () => {
         }
       }))
 
-      sinon.stub(readline, 'Interface').callsFake(function () {
+      sinon.stub(readline, 'createInterface').callsFake(function () {
         actualArgument = arguments['0']
 
         return 'ok'
