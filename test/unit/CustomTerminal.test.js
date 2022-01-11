@@ -105,4 +105,23 @@ describe('Terminal Suite Tests', () => {
 
   })
 
+  describe('closeTerminal', () => {
+
+    it('should call this.terminal.close when closeTerminal is called', () => {
+      const sut = new CustomTerminal()
+      let calls = 0
+
+      sut.terminal = {
+        close: () => {
+          calls++
+        }
+      }
+
+      sut.closeTerminal()
+
+      expect(calls).to.be.equal(1)
+    })
+
+  })
+
 })
