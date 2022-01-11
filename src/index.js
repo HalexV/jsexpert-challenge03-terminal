@@ -1,5 +1,6 @@
 import CustomTerminal from './terminal.js';
 import IncomeService from './service/IncomeService.js';
+import IncomeRepository from './repository/IncomeRepository.js'
 
 const VOCABULARY = {
   STOP: ':q',
@@ -8,16 +9,29 @@ const VOCABULARY = {
 const terminal = new CustomTerminal();
 terminal.initialize();
 
-const service = new IncomeService();
+const service = new IncomeService({
+  incomeRepository: new IncomeRepository()
+});
 
 async function mainLoop() {
-  console.info('🚀 Running...\n');
+  
   try {
-    // TODO: Looks like you have some work to do right here :)
+    
+    const answer = await terminal.question()
+
+    if (answer === VOCABULARY.STOP) {
+      terminal.closeTerminal()
+      console.log('Process finished!')
+      return;
+    }
+    const income = await service.generateIncomeFromString(answer)
+    terminal.updateTable(income)
+    return mainLoop()
   } catch (error) {
-    // TODO: Don't forget of handling some errors beautifully ;)
+    terminal.printError(error.message)
+    return mainLoop()
   }
-  return mainLoop();
+  
 }
 
 await mainLoop();
