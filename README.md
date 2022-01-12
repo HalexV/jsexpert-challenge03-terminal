@@ -40,7 +40,7 @@ Seguindo o padrão que já usamos anteriormente, é esperado que com o desafio p
 
 ### Extras
 
-* [ ] Desafio opcional: Note que não existem testes criados para o `terminal.js`. Então, caso queira, sinta-se livre para testar os métodos criados por você para a resolução desse desafio. 
+* [-] Desafio opcional: Note que não existem testes criados para o `terminal.js`. Então, caso queira, sinta-se livre para testar os métodos criados por você para a resolução desse desafio. 
 
 > Dica: Para facilitar sua jornada nesses testes, lembre que não só Injeção de dependências é vida em termos de testes automatizados, mas as variáveis de referência também (como é o caso dos `this.print`, `this.data` e `this.terminal`), então centrar seus testes nessas variáveis pode ser uma boa idéia.
 
@@ -94,7 +94,7 @@ project
 
 ### Checklist features
 
-* [ ] Deve identificar o que está faltando no arquivo `config/terminal.js`
+* [x] Deve identificar o que está faltando no arquivo `config/terminal.js`
 
 * [x] Deve implementar a internacionalização no arquivo `entity/Income.js`
 
@@ -102,9 +102,9 @@ project
 
 * [x] Deve implementar os métodos existentes em `service/IncomeService.js`, assegurando que os testes em `IncomeService.test.js` estejam funcionando.
 
-* [ ] Deve criar novos métodos e organizar a estrutura de criação do terminal em `terminal.js`
+* [x] Deve criar novos métodos e organizar a estrutura de criação do terminal em `terminal.js`
 
-* [ ] Deve entender e organizar o fluxo de chamada de funcões do terminal dentro do `mainLoop` em `index.js`
+* [x] Deve entender e organizar o fluxo de chamada de funcões do terminal dentro do `mainLoop` em `index.js`
 
 ## Submissão
 
