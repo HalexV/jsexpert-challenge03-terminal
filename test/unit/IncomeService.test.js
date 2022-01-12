@@ -87,6 +87,14 @@ describe('IncomeService Suite Tests', () => {
       await expect(result).to.be.eventually.rejectedWith(Error, 'IncomeString must contain a valid delimiter')
       await expect(result1).to.be.eventually.rejectedWith(Error, 'IncomeString must contain a valid delimiter')
     })
+
+    it('should throw when incomeString does not contain a position', async () => {
+      const sut = new IncomeService({incomeRepository: {}})
+
+      const result = sut.generateIncomeFromString(';1')
+
+      await expect(result).to.be.eventually.rejectedWith(Error, 'Position is a required field. Please make sure you are providing a position.')
+    })
   
     it('should return an error when generating an income instance from invalid string', async () => {
       const expectedErrorMessage =
