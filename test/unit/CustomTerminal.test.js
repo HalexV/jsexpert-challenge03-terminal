@@ -111,6 +111,27 @@ describe('Terminal Suite Tests', () => {
 
   })
 
+  describe('updateTable', () => {
+
+    it('should add an item to this.data when updateTable is called', () => {
+      const sut = new CustomTerminal()
+      sut.display = () => {
+        return
+      }
+
+      const item = 'any'
+
+      sut.updateTable(item)
+
+      const result = sut.data
+
+      expect(result.length).to.be.equal(1)
+      expect(result[0]).to.be.equal(item)
+
+    })
+
+  })
+
   describe('printError', () => {
     
     it('should assign error message to this.errorMessage', () => {
