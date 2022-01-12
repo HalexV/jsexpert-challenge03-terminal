@@ -12,9 +12,11 @@ class IncomeService {
 
     const [position, expectation] = incomeString.split(delimiter);
 
+    if (!position) throw new Error('Position is a required field. Please make sure you are providing a position.')
     if (expectation == undefined) throw new Error('IncomeString must contain a valid delimiter')
 
     const expectationValue = Number(expectation)
+
 
     if (!expectationValue) throw new Error('A valid Expectation is required. Please note that only numbers are allowed.')
 
