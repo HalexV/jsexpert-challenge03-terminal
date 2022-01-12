@@ -4,6 +4,12 @@ import CustomTerminal from '../../src/terminal.js'
 import { expect } from 'chai'
 import sinon from 'sinon'
 import readline from 'readline'
+import chalkTable from 'chalk-table'
+import chalk from 'chalk'
+
+import terminalConfig from '../../src/config/terminal.js';
+
+const TABLE_OPTIONS = terminalConfig.tableOptions;
 
 describe('Terminal Suite Tests', () => {
 
@@ -102,6 +108,30 @@ describe('Terminal Suite Tests', () => {
 
       expect(calls).to.be.equal(1)
     })
+
+  })
+
+  describe('printError', () => {
+    
+    it('should assign error message to this.errorMessage', () => {
+      const sut = new CustomTerminal()
+
+      const message = 'any'
+      
+      const expected = chalk.red(message)
+      
+      sut.display = function () {
+        return
+      }
+
+      sut.printError(message)
+
+      const result = sut.errorMessage
+      
+      expect(result).to.be.equal(expected)
+    })
+
+    
 
   })
 
